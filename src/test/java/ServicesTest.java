@@ -20,7 +20,7 @@ class ServicesTest {
 
     @Test
     void testForRequestMethod() throws IOException {
-        server = new ServerSocket(8080);
+        server = new ServerSocket(8089);
         clientSocket = server.accept();
         br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         StringBuilder requestBuilder = new StringBuilder();
@@ -40,7 +40,7 @@ class ServicesTest {
 
     @Test
     void getFilePath() throws IOException {
-        server = new ServerSocket(8080);
+        server = new ServerSocket(8089);
         clientSocket = server.accept();
         br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         StringBuilder requestBuilder = new StringBuilder();
@@ -60,7 +60,7 @@ class ServicesTest {
 
     @Test
     void shouldTestForRequestVersion() throws IOException{
-        server = new ServerSocket(8080);
+        server = new ServerSocket(8090);
         clientSocket = server.accept();
         br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         StringBuilder requestBuilder = new StringBuilder();

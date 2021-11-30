@@ -13,8 +13,8 @@ import java.util.concurrent.Executors;
 public class Server{
 
     public static void main(String[] args) throws IOException {
-        ServiceImplementation si = new ServiceImplementation();
-        ServerSocket server = new ServerSocket(8085);
+        ServiceImplementation serviceImplementation = new ServiceImplementation();
+        ServerSocket server = new ServerSocket(8089);
         ExecutorService executor = Executors.newFixedThreadPool(10);
 
         while(server != null) {
@@ -40,18 +40,18 @@ public class Server{
                 String host = requestsLines[1].split(" ")[1];
 
 
-                Path filePath = si.getFilePath("src/main/java/MyFiles/javaindex.html");
-                Path filePath1 = si.getFilePath("src/main/java/MyFiles/javaindex1.json");
-                Path filePath2 = si.getFilePath("src/main/java/MyFiles/error.html");
+                Path filePath = serviceImplementation.getFilePath("src/main/java/MyFiles/javaindex.html");
+                Path filePath1 = serviceImplementation.getFilePath("src/main/java/MyFiles/javaindex1.json");
+                Path filePath2 = serviceImplementation.getFilePath("src/main/java/MyFiles/error.html");
                 if (path.equals("/") && Files.exists(filePath)) {
-                    String contentType = si.guessContentType(filePath);
-                    si.sendResponse(clientSocket, "200 OK", contentType, Files.readAllBytes(filePath));
+                    String contentType = serviceImplementation.guessContentType(filePath);
+                    serviceImplementation.sendResponse(clientSocket, "200 OK", contentType, Files.readAllBytes(filePath));
                 } else if (path.equals("/json") && Files.exists(filePath1)) {
-                    String contentType = si.guessContentType(filePath1);
-                    si.sendResponse(clientSocket, "200 OK", contentType, Files.readAllBytes(filePath1));
+                    String contentType = serviceImplementation.guessContentType(filePath1);
+                    serviceImplementation.sendResponse(clientSocket, "200 OK", contentType, Files.readAllBytes(filePath1));
                 } else {
-                    String contentType = si.guessContentType(filePath2);
-                    si.sendResponse(clientSocket, "200 OK", contentType, Files.readAllBytes(filePath2));
+                    String contentType = serviceImplementation.guessContentType(filePath2);
+                    serviceImplementation.sendResponse(clientSocket, "200 OK", contentType, Files.readAllBytes(filePath2));
                 }
                 System.out.println(requestBuilder.toString());
             } catch (Exception e) {
